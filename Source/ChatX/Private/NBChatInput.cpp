@@ -99,6 +99,10 @@ TSharedRef<SWidget> UNBChatInput::RebuildWidget() // 코드로 생성한 루트�
 		ChatSlot->SetPadding(FMargin(0.0f, 8.0f));
 
 		EditableTextBox_ChatInput = WidgetTree->ConstructWidget<UEditableTextBox>(UEditableTextBox::StaticClass(), TEXT("EditableTextBox_ChatInput"));
+		FEditableTextBoxStyle InputStyle = EditableTextBox_ChatInput->GetWidgetStyle();
+		InputStyle.SetForegroundColor(FSlateColor(FLinearColor::Black));
+		InputStyle.SetFocusedForegroundColor(FSlateColor(FLinearColor::Black));
+		EditableTextBox_ChatInput->SetWidgetStyle(InputStyle);
 		EditableTextBox_ChatInput->SetHintText(FText::FromString(TEXT("123 또는 /say 안녕하세요 입력 후 Enter")));
 		Layout->AddChildToVerticalBox(EditableTextBox_ChatInput);
 		AddLabel(TEXT("TextBlock_Help"), TEXT("추측: 1~9 중 서로 다른 숫자 3자리를 공백 없이 입력하세요. S = 스트라이크(숫자와 자리 일치), B = 볼(숫자만 일치), OUT = 아웃(일치 없음).\n/say 내용: 차례나 남은 횟수와 관계없이 채팅할 수 있습니다. 최대 256자입니다."));
